@@ -446,10 +446,12 @@ class StockBalanceReport(object):
 				{
 					"label": _("Valuation Rate"),
 					"fieldname": "val_rate",
-					"fieldtype": "Currency",
+					"fieldtype": self.filters.valuation_field_type or "Currency",
 					"width": 90,
 					"convertible": "rate",
-					"options": "currency",
+					"options": "Company:company:default_currency"
+					if self.filters.valuation_field_type == "Currency"
+					else None,
 				},
 				{
 					"label": _("Reserved Stock"),
